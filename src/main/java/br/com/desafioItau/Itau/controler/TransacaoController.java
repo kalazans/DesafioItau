@@ -5,10 +5,8 @@ import br.com.desafioItau.Itau.dto.NovaTransacaoDTO;
 import br.com.desafioItau.Itau.infra.exceptions.CustomErrorApi;
 import br.com.desafioItau.Itau.service.TransacaoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +27,6 @@ public class TransacaoController {
         if(novaTransacaoDTO.isEmpty()) return ResponseEntity
                 .badRequest()
                 .body(new CustomErrorApi(HttpStatus.BAD_REQUEST,"requisiçaõ sem corpo",new ArrayList<>()));
-
         this.transacaoService.save(novaTransacaoDTO.get());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
